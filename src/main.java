@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class main {
 
-    //declaration des variables
+    //declaration des variables//
     private static int nbSommet;
     private static int nbArc;
 
