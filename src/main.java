@@ -95,7 +95,7 @@ public class main {
         }
         System.out.println("");
         for (int i=0; i<nbSommet; i++){
-            System.out.printf("\t %s", i);
+            System.out.printf("\t %s", i+1);
             for (int j=0; j<nbSommet; j++){
                 System.out.printf("\t %s", Matrix[i][j]);
             }
