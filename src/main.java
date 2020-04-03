@@ -15,7 +15,7 @@ public class main {
         ArrayList<Sommet> allSommet = new ArrayList<Sommet>();
 
         try {
-            Scanner scanner = new Scanner(new File("src/graph1.txt")); //declaration de lecture sur fichier .txt
+            Scanner scanner = new Scanner(new File("src/graph2.txt")); //declaration de lecture sur fichier .txt
             //on commence par recuperer le nombre de sommets et d'arcs
             nbSommet = Integer.parseInt(scanner.nextLine());
             nbArc = Integer.parseInt(scanner.nextLine());
@@ -35,6 +35,7 @@ public class main {
         MatriceValeurs(nbArc, nbSommet, allSommet);
     }
 
+
     public static void Lecture(ArrayList<Sommet> sommet){
         System.out.println("\n\nLecture du graphe:\n");
         for (Sommet s : sommet){
@@ -46,33 +47,23 @@ public class main {
     public static void MatriceAdjacence(int nbArc, int nbSommet, ArrayList<Sommet> sommet){
         System.out.println("\n\nMatrice d'adjacence:\n");
         //initialisation de la matrice
-        int Matrix[][] = new int [nbSommet][nbSommet];
+        String Matrix[][] = CreationMatrice(nbSommet);
+
         for (int i=0; i<nbArc; i++){
             for (int j=0; j<nbArc; j++){
                 if (sommet.get(i).getArc()==j){
-                    Matrix[sommet.get(i).getNom()][j]=1;
+                    Matrix[sommet.get(i).getNom()][j]= String.valueOf(1);
                 }
             }
         }
 
-        for (int i=0; i<nbSommet; i++){
-            for (int j=0; j<nbSommet; j++){
-                System.out.printf("\t %s", Matrix[i][j]);
-            }
-            System.out.println("  ");
-        }
+        AffichageMatrice(nbArc, nbSommet, Matrix);
     }
 
 
     public static void MatriceValeurs(int nbArc, int nbSommet, ArrayList<Sommet> sommet){
         System.out.println("\n\nMatrice des valeurs:\n");
-        String Matrix[][] = new String [nbSommet][nbSommet];
-
-        for (int i=0; i<nbSommet; i++){
-            for (int j=0; j<nbSommet; j++){
-                Matrix[i][j]= String.valueOf('*');
-            }
-        }
+        String Matrix[][] = CreationMatrice(nbSommet);
 
         for (int i=0; i<nbArc; i++){
             for (int j=0; j<nbArc; j++){
@@ -82,7 +73,29 @@ public class main {
             }
         }
 
+        AffichageMatrice(nbArc, nbSommet, Matrix);
+    }
+
+
+    public static String[][] CreationMatrice(int nbSommet){
+        String Matrix[][] = new String [nbSommet][nbSommet];
+
         for (int i=0; i<nbSommet; i++){
+            for (int j=0; j<nbSommet; j++){
+                Matrix[i][j]= String.valueOf('*');
+            }
+        }
+        return Matrix;
+    }
+
+
+    public static void AffichageMatrice(int nbArc, int nbSommet, String[][] Matrix){
+        for (int i=0; i<nbArc; i++){
+            System.out.printf("\t %s", i);
+        }
+        System.out.println("");
+        for (int i=0; i<nbSommet; i++){
+            System.out.printf("\t %s", i);
             for (int j=0; j<nbSommet; j++){
                 System.out.printf("\t %s", Matrix[i][j]);
             }
